@@ -1,0 +1,25 @@
+{
+  "category": "tenant_communication",
+  "question": "Send notice to all tenants about pool closure February 5-7 for maintenance",
+  "expected_tool": "broadcast_notice.json",
+  "expected_command": "broadcast_notice --message 'Pool maintenance scheduled for February 5-7. Pool will be closed during this time.' --subject 'Pool Closure Notice - February 5-7' --recipient_group all_tenants --delivery_method ['email', 'posted_notice']",
+  "context_tag": "facility_notification",
+  "priority": "medium",
+  "workflow": "mass_communication",
+  "advance_notice": "48_hours_minimum",
+  "compliance": "required_for_amenity_closures",
+  "variations": [
+    {
+      "question": "Emergency notice about water shut-off tomorrow morning",
+      "expected_command": "broadcast_notice --message 'Water will be shut off tomorrow 8-10 AM for emergency repairs' --subject 'URGENT: Water Shut-off Notice' --recipient_group all_tenants --delivery_method ['email', 'sms', 'posted_notice'] --priority urgent"
+    },
+    {
+      "question": "Remind Building A tenants about rent due date",
+      "expected_command": "broadcast_notice --message 'Friendly reminder: Rent is due on the 1st of each month' --subject 'Rent Due Reminder' --recipient_group building_a --delivery_method ['email']"
+    },
+    {
+      "question": "Notify delinquent tenants about late fee policy",
+      "expected_command": "broadcast_notice --message 'Late fees apply after the 5th of the month' --subject 'Late Fee Policy Reminder' --recipient_group delinquent_only --delivery_method ['email', 'sms']"
+    }
+  ]
+}

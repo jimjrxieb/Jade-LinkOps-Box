@@ -77,7 +77,7 @@ class ModelConfig(BaseModel):
 class TrainingRequest(BaseModel):
     """Request for model training."""
 
-    model_config: ModelConfig
+    model_configuration: ModelConfig
     csv_path: Optional[str] = Field(None, description="Path to training CSV file")
     csv_data: Optional[str] = Field(None, description="CSV data as string")
     quick_training: bool = Field(False, description="Use quick training mode")

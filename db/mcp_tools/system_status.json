@@ -1,10 +1,16 @@
 {
-  "name": "system_status",
-  "description": "Display system status and resource usage information",
-  "task_type": "monitoring",
-  "command": "echo '=== System Status ===' && uptime && echo '=== Memory Usage ===' && free -h && echo '=== Disk Usage ===' && df -h . && echo '=== System Info ===' && uname -a",
-  "tags": ["system", "monitoring", "status"],
-  "auto": true,
-  "created_at": "2024-01-15T10:30:00Z",
-  "updated_at": "2024-01-15T10:30:00Z"
+    "tool_name": "system_status",
+    "description": "Returns CPU, RAM, and disk usage information for system monitoring",
+    "command": "python scripts/system_status.py",
+    "task_type": "monitoring",
+    "auto_execute": true,
+    "requires_confirmation": false,
+    "tags": ["system", "monitoring", "status", "health"],
+    "examples": [
+        "Can you check my system status?",
+        "How is my system doing?",
+        "Show me system health"
+    ],
+    "created_at": "2024-01-15T10:30:00Z",
+    "updated_at": "2024-01-15T10:30:00Z"
 } 

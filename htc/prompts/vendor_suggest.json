@@ -1,0 +1,25 @@
+{
+  "category": "vendor_management",
+  "question": "Find the best plumber for emergency repair in Building B under $2000",
+  "expected_tool": "vendor_suggest.json",
+  "expected_command": "vendor_suggest --work_type plumbing --building 'Building B' --urgency emergency --budget_max 2000",
+  "context_tag": "vendor_selection",
+  "priority": "high",
+  "workflow": "emergency_repair",
+  "selection_criteria": ["response_time", "cost", "quality_rating", "availability"],
+  "approval_required": true,
+  "variations": [
+    {
+      "question": "Recommend HVAC contractor for routine maintenance",
+      "expected_command": "vendor_suggest --work_type hvac --urgency routine --budget_max 1000"
+    },
+    {
+      "question": "Need electrician ASAP for power outage in unit 404",
+      "expected_command": "vendor_suggest --work_type electrical --urgency emergency --availability_required within_2_hours"
+    },
+    {
+      "question": "Get quotes for painting Building A exterior",
+      "expected_command": "vendor_suggest --work_type painting --building 'Building A' --urgency routine --budget_max 10000"
+    }
+  ]
+}

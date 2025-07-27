@@ -1,31 +1,39 @@
-# Default configuration values
-replicaCount: 1
+global:
+  namespace: demo-linkops
+  imagePullPolicy: IfNotPresent
 
-image:
-  frontend:
-    repository: localhost:5000/demo-linkops-frontend
-    tag: latest
-    pullPolicy: IfNotPresent
-  unifiedApi:
-    repository: localhost:5000/demo-linkops-unified-api
-    tag: latest
-    pullPolicy: IfNotPresent
-  rag:
-    repository: localhost:5000/demo-linkops-rag
-    tag: latest
-    pullPolicy: IfNotPresent
-  mlModels:
-    repository: localhost:5000/demo-linkops-ml-models
-    tag: latest
-    pullPolicy: IfNotPresent
-  pipeline:
-    repository: localhost:5000/demo-linkops-pipeline
-    tag: latest
-    pullPolicy: IfNotPresent
-  syncEngine:
-    repository: localhost:5000/demo-linkops-sync-engine
-    tag: latest
-    pullPolicy: IfNotPresent
+frontend:
+  image: demo-linkops-frontend:latest
+  port: 80
+
+api:
+  image: demo-linkops-api:latest
+  port: 8000
+
+rag:
+  image: demo-linkops-rag:latest
+  port: 8001
+
+sync:
+  image: demo-linkops-sync:latest
+  port: 9000
+
+models:
+  image: demo-linkops-models:latest
+  port: 8500
+
+pipeline:
+  image: demo-linkops-pipeline:latest
+  port: 8003
+
+postgresql:
+  enabled: true
+  user: postgres
+  password: postgres
+  db: jadebox
+
+redis:
+  enabled: true
 
 service:
   type: ClusterIP
@@ -141,4 +149,54 @@ config:
     vectorDbPath: "/app/data/vectorstore"
   monitoring:
     enabled: true
-    metricsPort: 9090 
+    metricsPort: 9090
+
+# ZRS Property Management Tools Configuration
+zrs:
+  enabled: true
+  tools:
+    mcp_tools_path: /app/db/mcp_tools
+    scripts_path: /app/tools
+    datasets_path: /app/htc/datasets
+    prompts_path: /app/htc/prompts
+  
+  # ZRS Training Configuration
+  training:
+    enabled: true
+    model_name: "microsoft/DialoGPT-small"
+    dataset_file: "zrs_property_finetune.jsonl"
+    output_path: "/app/models/jade-zrs-property"
+    
+  # ZRS Tool Configuration
+  tools_config:
+    - name: "send_late_notice"
+      description: "Send late rent notice to tenant"
+      timeout: 30
+      retry_count: 3
+    - name: "notify_maintenance" 
+      description: "Alert maintenance team with priority assignment"
+      timeout: 30
+      retry_count: 2
+    - name: "vendor_suggest"
+      description: "Recommend ZRS-approved vendors"
+      timeout: 45
+      retry_count: 2
+    - name: "schedule_turnover"
+      description: "Schedule unit cleaning and inspection"
+      timeout: 60
+      retry_count: 2
+    - name: "query_delinquency"
+      description: "Analyze tenant payment data"
+      timeout: 30
+      retry_count: 2
+    - name: "broadcast_notice"
+      description: "Send mass notifications to tenants"
+      timeout: 120
+      retry_count: 3
+
+  # ZRS Data persistence
+  persistence:
+    enabled: true
+    size: 5Gi
+    storageClass: "standard"
+    mount_path: /app/zrs-data 

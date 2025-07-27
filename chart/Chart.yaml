@@ -1,5 +1,6 @@
 apiVersion: v2
 name: demo-linkops
-description: "A Helm chart for DEMO-LinkOps full stack"
+description: Jade Box - Offline AI Assistant (Helm Chart)
+type: application
 version: 0.1.0
 appVersion: "1.0.0" 

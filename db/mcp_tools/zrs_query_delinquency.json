@@ -1,0 +1,50 @@
+{
+  "name": "query_delinquency",
+  "description": "Query tenants who are past due on rent from the ZRS delinquency report with advanced filtering and analytics.",
+  "category": "financial",
+  "parameters": {
+    "days_late": {
+      "type": "integer",
+      "description": "Minimum number of days late",
+      "required": true,
+      "example": 15
+    },
+    "building": {
+      "type": "string",
+      "description": "Filter by specific building",
+      "required": false,
+      "example": "Building A"
+    },
+    "amount_threshold": {
+      "type": "number",
+      "description": "Minimum amount owed to include",
+      "required": false,
+      "example": 500
+    },
+    "sort_by": {
+      "type": "string",
+      "description": "Field to sort results by",
+      "required": false,
+      "enum": ["days_late", "amount_owed", "tenant_name", "unit"],
+      "default": "days_late",
+      "example": "amount_owed"
+    }
+  },
+  "command": "python tools/query_delinquency.py --days '{{days_late}}' --building '{{building}}' --amount '{{amount_threshold}}' --sort '{{sort_by}}'",
+  "execution": {
+    "timeout": 30,
+    "retry_count": 2,
+    "log_level": "INFO"
+  },
+  "output": {
+    "total_delinquent": "integer",
+    "total_amount_owed": "number",
+    "delinquent_tenants": "array",
+    "analytics": "object"
+  },
+  "data_source": {
+    "file": "db/demo_data/delinquency.csv",
+    "last_updated": "auto-detected",
+    "backup_location": "db/backups/"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "workflows": {
+    "rent_collection": {
+      "stages": [
+        {
+          "day": 1,
+          "action": "send_rent_reminder",
+          "template": "friendly_reminder",
+          "automated": true
+        },
+        {
+          "day": 5,
+          "action": "send_late_notice",
+          "template": "first_notice",
+          "fee_applied": 50
+        },
+        {
+          "day": 10,
+          "action": "phone_call_attempt", 
+          "escalation": "property_manager",
+          "automated": false
+        },
+        {
+          "day": 15,
+          "action": "final_notice",
+          "template": "pay_or_quit",
+          "legal_action": "threatened"
+        },
+        {
+          "day": 30,
+          "action": "eviction_filing",
+          "requires_approval": true,
+          "legal_counsel": "required"
+        }
+      ]
+    },
+    "maintenance_escalation": {
+      "emergency": {
+        "response_time": "2 hours",
+        "notification": ["property_manager", "on_call_tech"],
+        "vendor_tier": "premium",
+        "approval_limit": 2000
+      },
+      "urgent": {
+        "response_time": "24 hours", 
+        "notification": ["maintenance_team"],
+        "vendor_tier": "preferred",
+        "approval_limit": 1000
+      },
+      "routine": {
+        "response_time": "72 hours",
+        "notification": ["maintenance_coordinator"],
+        "vendor_tier": "standard",
+        "approval_limit": 500
+      }
+    },
+    "lease_lifecycle": {
+      "pre_expiration": {
+        "60_days": "market_analysis",
+        "45_days": "renewal_notice_sent",
+        "30_days": "follow_up_call",
+        "15_days": "final_renewal_offer",
+        "7_days": "move_out_preparation"
+      },
+      "move_out": {
+        "inspection_scheduled": true,
+        "security_deposit_review": true,
+        "cleaning_requirements": "deep_clean",
+        "marketing_preparation": "photos_updated"
+      }
+    },
+    "vendor_management": {
+      "selection_criteria": {
+        "cost_weight": 0.3,
+        "quality_rating": 0.4,
+        "response_time": 0.2,
+        "availability": 0.1
+      },
+      "approval_tiers": {
+        "under_500": "maintenance_supervisor",
+        "500_to_2000": "property_manager", 
+        "over_2000": "regional_manager"
+      },
+      "performance_tracking": {
+        "completion_time": true,
+        "quality_score": true,
+        "cost_variance": true,
+        "tenant_satisfaction": true
+      }
+    }
+  }
+}

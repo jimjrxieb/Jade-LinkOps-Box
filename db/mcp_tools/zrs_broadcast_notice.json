@@ -1,0 +1,52 @@
+{
+  "name": "broadcast_notice",
+  "description": "Send a broadcast message to all ZRS tenants with professional formatting and delivery tracking.",
+  "category": "communication",
+  "parameters": {
+    "subject": {
+      "type": "string",
+      "description": "Subject line for the email",
+      "required": true,
+      "example": "Pool Closure Notice"
+    },
+    "body": {
+      "type": "string",
+      "description": "Message body",
+      "required": true,
+      "example": "The pool is closed until further notice for maintenance"
+    },
+    "recipient_group": {
+      "type": "string",
+      "description": "Target audience for the message",
+      "required": false,
+      "enum": ["all_tenants", "building_a", "building_b", "current_residents", "delinquent_only"],
+      "default": "all_tenants",
+      "example": "all_tenants"
+    },
+    "priority": {
+      "type": "string",
+      "description": "Message priority level",
+      "required": false,
+      "enum": ["low", "normal", "high", "urgent"],
+      "default": "normal",
+      "example": "normal"
+    }
+  },
+  "command": "python tools/email_broadcast.py --subject '{{subject}}' --body '{{body}}' --recipients '{{recipient_group}}' --priority '{{priority}}'",
+  "execution": {
+    "timeout": 120,
+    "retry_count": 3,
+    "log_level": "INFO"
+  },
+  "output": {
+    "emails_sent": "integer",
+    "failed_deliveries": "array",
+    "delivery_rate": "percentage",
+    "timestamp": "ISO datetime"
+  },
+  "compliance": {
+    "unsubscribe_link": "Required for all non-essential communications",
+    "zrs_branding": "Official ZRS letterhead and contact info",
+    "legal_footer": "Property management disclosure included"
+  }
+}

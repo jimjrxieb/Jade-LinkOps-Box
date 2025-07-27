@@ -1,0 +1,21 @@
+{
+  "category": "property_management",
+  "question": "Schedule deep cleaning and turnover for unit 506 after February 15th move-out",
+  "expected_tool": "schedule_turnover.json", 
+  "expected_command": "schedule_turnover --unit_number '506' --move_out_date '2025-02-15' --cleaning_level deep_clean --inspection_required true",
+  "context_tag": "unit_preparation",
+  "priority": "medium",
+  "workflow": "vacancy_preparation",
+  "timeline": "5-7 days typical",
+  "revenue_impact": "minimize_vacancy_time",
+  "variations": [
+    {
+      "question": "Quick turnover for unit 203 - new tenant moving in next week",
+      "expected_command": "schedule_turnover --unit_number '203' --move_out_date '2025-01-28' --new_lease_start '2025-02-03' --cleaning_level standard"
+    },
+    {
+      "question": "Unit 101 needs renovation after damage - schedule major cleanup",
+      "expected_command": "schedule_turnover --unit_number '101' --move_out_date '2025-01-31' --cleaning_level renovation_clean --repairs_needed ['flooring_replacement', 'wall_repair', 'appliance_replacement']"
+    }
+  ]
+}

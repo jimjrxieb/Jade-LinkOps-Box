@@ -1,22 +1,11 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: {{ include "demo-linkops.fullname" . }}-{{ .Values.serviceName | default "frontend" }}
-spec:
-  replicas: {{ .Values.replicaCount }}
-  selector:
-    matchLabels:
-      app: {{ include "demo-linkops.name" . }}
-      component: frontend
-  template:
-    metadata:
-      labels:
-        app: {{ include "demo-linkops.name" . }}
-        component: frontend
-    spec:
-      containers:
-      - name: frontend
-        image: "{{ .Values.image.frontend.repository }}:{{ .Values.image.frontend.tag }}"
-        imagePullPolicy: {{ .Values.image.frontend.pullPolicy }}
-        ports:
-        - containerPort: {{ .Values.service.frontend.port }} 
+{{- include "demo-linkops.template" (dict "name" "frontend" "port" .Values.frontend.port "image" .Values.frontend.image "ctx" .) }}
+---
+{{- include "demo-linkops.template" (dict "name" "api" "port" .Values.api.port "image" .Values.api.image "ctx" .) }}
+---
+{{- include "demo-linkops.template" (dict "name" "rag" "port" .Values.rag.port "image" .Values.rag.image "ctx" .) }}
+---
+{{- include "demo-linkops.template" (dict "name" "sync" "port" .Values.sync.port "image" .Values.sync.image "ctx" .) }}
+---
+{{- include "demo-linkops.template" (dict "name" "models" "port" .Values.models.port "image" .Values.models.image "ctx" .) }}
+---
+{{- include "demo-linkops.template" (dict "name" "pipeline" "port" .Values.pipeline.port "image" .Values.pipeline.image "ctx" .) }}

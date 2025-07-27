@@ -1,0 +1,11 @@
+{
+  "category": "lease_management",
+  "question": "Start lease renewal process for Jane Smith expiring next month",
+  "expected_tool": "lease_renewal.json",
+  "expected_command": "lease_renewal --tenant 'Jane Smith' --current_rent 1800 --new_rate 1950 --lease_term 12 --send_notice true",
+  "context_tag": "lease_administration",
+  "priority": "medium",
+  "workflow": "renewal_process",
+  "market_analysis": "rent_increase_justified",
+  "negotiation_room": "5%"
+}

@@ -316,212 +316,105 @@ onMounted(refreshStatus);
 
 <style scoped>
 .htc-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 2rem;
-  min-height: 100vh;
-  background: radial-gradient(circle at center, #1c3f45, #0f2e38);
+  @apply min-h-screen bg-gradient-to-br from-gray-900 to-black text-white p-6 space-y-6;
 }
 
 .upload-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #31a3a3;
-  padding: 2rem;
-  border-radius: 16px;
-  width: 100%;
-  max-width: 600px;
-  text-align: center;
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  @apply card-glass max-w-3xl mx-auto;
 }
 
 .title {
-  color: #ffffff;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
-  font-weight: 600;
+  @apply text-4xl font-bold text-jade drop-shadow glow mb-2;
 }
 
 .drop-area {
-  border: 2px dashed #2bc0c0;
-  padding: 2rem;
-  border-radius: 12px;
-  background-color: rgba(0, 255, 255, 0.05);
-  color: #d6f9ff;
-  cursor: pointer;
-  margin-bottom: 1.5rem;
-  transition: all 0.3s ease;
+  @apply border-2 border-dashed border-jade-500/30 rounded-xl p-8 bg-backdrop-light 
+         hover:border-jade-400/50 hover:bg-jade-500/5 cursor-pointer transition-all duration-300;
 }
 
 .drop-area.drag-active {
-  background-color: rgba(0, 255, 255, 0.1);
-  border-color: #40f7f7;
-  transform: scale(1.02);
+  @apply border-jade-400/50 bg-jade-500/5 transform scale-[1.02];
 }
 
 .upload-icon {
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 1rem;
-  color: #2bc0c0;
+  @apply w-12 h-12 mx-auto mb-4 text-jade-500;
 }
 
 .browse {
-  color: #40f7f7;
-  text-decoration: underline;
-  cursor: pointer;
+  @apply text-jade-400 underline cursor-pointer hover:text-jade-300 transition-colors;
 }
 
 .file-list-container {
-  margin: 1.5rem 0;
-  text-align: left;
+  @apply mt-6 text-left;
 }
 
 .file-list {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  overflow: hidden;
+  @apply space-y-2;
 }
 
 .file-item {
-  display: flex;
-  align-items: center;
-  padding: 0.75rem 1rem;
-  color: #e6ffff;
-  font-size: 0.875rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.file-item:last-child {
-  border-bottom: none;
+  @apply flex items-center justify-between p-3 rounded-lg bg-backdrop-light border border-jade-500/20;
 }
 
 .file-name {
-  flex: 1;
-  margin-right: 1rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  @apply text-sm font-medium text-jade-100;
 }
 
 .file-size {
-  color: #2bc0c0;
-  margin-right: 1rem;
+  @apply text-xs text-jade-600;
 }
 
 .remove-btn {
-  color: #ff6b6b;
-  opacity: 0.7;
-  transition: opacity 0.2s;
-}
-
-.remove-btn:hover {
-  opacity: 1;
+  @apply text-red-500 hover:text-red-400 transition-colors;
 }
 
 .sync-controls {
-  margin-top: 1.5rem;
+  @apply mt-6;
 }
 
 .sync-btn {
-  background-color: #0a2e3c;
-  color: white;
-  padding: 0.75rem 2rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  width: 100%;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sync-btn:not(:disabled):hover {
-  background-color: #094759;
-  transform: translateY(-1px);
+  @apply btn-primary w-full flex items-center justify-center;
 }
 
 .sync-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+  @apply opacity-50 cursor-not-allowed;
 }
 
 .status-section {
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  text-align: left;
+  @apply mt-8 pt-6 border-t border-jade-500/20;
 }
 
 .uploaded-list {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  overflow: hidden;
+  @apply space-y-2 max-h-[400px] overflow-y-auto;
 }
 
 .uploaded-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 1rem;
-  color: #e6ffff;
-  font-size: 0.875rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.uploaded-item:last-child {
-  border-bottom: none;
+  @apply flex items-center justify-between p-3 rounded-lg bg-backdrop-light border border-jade-500/20;
 }
 
 .delete-btn {
-  color: #ff6b6b;
-  opacity: 0.7;
-  transition: opacity 0.2s;
-}
-
-.delete-btn:hover {
-  opacity: 1;
+  @apply text-red-500 hover:text-red-400 transition-colors;
 }
 
 .spinner {
-  border: 2px solid transparent;
-  border-top-color: currentColor;
-  border-radius: 50%;
-  width: 1rem;
-  height: 1rem;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  @apply animate-spin;
 }
 
 /* Form Controls */
 .form-checkbox {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-color: #2bc0c0;
+  @apply bg-backdrop-light border-jade-500;
 }
 
 .form-checkbox:checked {
-  background-color: #2bc0c0;
+  @apply bg-jade-500;
 }
 
 /* Upload Progress */
 .upload-progress {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+  @apply flex flex-col items-center gap-4;
 }
 
 .upload-progress .spinner {
-  width: 2rem;
-  height: 2rem;
-  border-width: 3px;
+  @apply w-8 h-8 border-2 border-jade-500 border-t-transparent rounded-full;
 }
 </style>

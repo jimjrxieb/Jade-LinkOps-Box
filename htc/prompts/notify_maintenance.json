@@ -1,0 +1,11 @@
+{
+  "category": "maintenance",
+  "question": "Notify maintenance that unit 303 has a leak",
+  "expected_tool": "notify_maintenance.json",
+  "expected_command": "send_email --to maintenance@zrs.com --subject 'Leak in 303' --message 'Urgent: Water leak reported in unit 303. Please dispatch repair team immediately.'",
+  "context_tag": "tenant_complaint",
+  "priority": "high",
+  "workflow": "maintenance_escalation",
+  "estimated_cost": 150,
+  "expected_completion": "4 hours"
+}

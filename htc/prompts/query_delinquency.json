@@ -1,0 +1,25 @@
+{
+  "category": "financial_reporting", 
+  "question": "Show me all tenants more than 30 days late owing over $1000",
+  "expected_tool": "query_delinquency.json",
+  "expected_command": "query_delinquency --days_late_min 30 --amount_min 1000 --sort_by amount_owed --sort_order desc",
+  "context_tag": "delinquency_analysis",
+  "priority": "high",
+  "workflow": "financial_review",
+  "reporting_frequency": "weekly",
+  "action_required": "escalation_review",
+  "variations": [
+    {
+      "question": "List all delinquent tenants in Building A",
+      "expected_command": "query_delinquency --building 'Building A' --days_late_min 1 --sort_by days_late"
+    },
+    {
+      "question": "Find tenants between 15-45 days late",
+      "expected_command": "query_delinquency --days_late_min 15 --days_late_max 45 --sort_by days_late --sort_order desc"
+    },
+    {
+      "question": "Show worst delinquency cases",
+      "expected_command": "query_delinquency --days_late_min 60 --sort_by amount_owed --sort_order desc"
+    }
+  ]
+}

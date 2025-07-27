@@ -1,0 +1,11 @@
+{
+  "category": "rent_collection",
+  "question": "Send late rent notice to Tony Stark in unit 401",
+  "expected_tool": "email_late_notice.json",
+  "expected_command": "email_late_notice --tenant 'Tony Stark' --unit '401' --amount_due 2500 --days_late 7 --template late_notice_7days",
+  "context_tag": "delinquency_management",
+  "priority": "medium",
+  "workflow": "rent_enforcement",
+  "legal_timeline": "3-day notice required",
+  "escalation_path": "legal_action"
+}

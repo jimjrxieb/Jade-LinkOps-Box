@@ -1,0 +1,11 @@
+{
+  "category": "vendor_management",
+  "question": "Recommend a vendor for HVAC repair in Building A",
+  "expected_tool": "vendor_recommend.json", 
+  "expected_command": "vendor_recommend --type HVAC --building 'Building A' --urgency high --budget_max 5000",
+  "context_tag": "vendor_selection",
+  "priority": "high",
+  "workflow": "vendor_dispatch",
+  "selection_criteria": ["cost", "response_time", "quality_rating", "availability"],
+  "approval_required": true
+}

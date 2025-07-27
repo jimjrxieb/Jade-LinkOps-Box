@@ -2,9 +2,14 @@
 ├── DEMO-QA-IMPLEMENTATION.md
 ├── DEMO-SYNC-IMPLEMENTATION.md
 ├── DEMO-Tree.txt
+├── INFRASTRUCTURE_UPDATE_SUMMARY.md
+├── Jade-Tree.txt
 ├── MANAGER-CONFIRMATION-IMPLEMENTATION.md
 ├── Makefile
 ├── PIPELINE_FIXES_SUMMARY.md
+├── README.md
+├── STRUCTURE_CLEANUP_SUMMARY.md
+├── VERSION
 ├── auto_runner.log
 ├── build_images.py
 ├── chart
@@ -17,6 +22,10 @@
 │   │   └── service.yaml
 │   └── values.yaml
 ├── db
+│   ├── demo_data
+│   │   ├── delinquency.csv
+│   │   ├── vendor_suggestions.csv
+│   │   └── workorders.csv
 │   ├── execution_logs.db
 │   ├── init
 │   ├── logs
@@ -36,19 +45,14 @@
 │       ├── interactive_prompt.json
 │       ├── interactive_read.json
 │       ├── manual_tool.json
-│       ├── network-info.json
 │       ├── network_info.json
 │       ├── process-list.json
 │       ├── sample-tool.json
 │       ├── send_emails.json
 │       ├── system-info.json
-│       ├── system-status.json
 │       ├── system_status.json
 │       ├── test_tool.json
 │       └── timeout_test.json
-├── demo_data
-│   ├── delinquency.csv
-│   └── vendor_suggestions.csv
 ├── docker
 │   ├── deploy-demo.sh
 │   └── overrides
@@ -88,31 +92,6 @@
 │   │   │   ├── DEMO-Tree.txt
 │   │   │   └── NEW-STRUCTURE.txt
 │   │   └── train_model.py
-│   ├── demo-build
-│   │   ├── AUTO-RUNNER-FRONTEND-INTEGRATION.md
-│   │   ├── AUTO-RUNNER-IMPLEMENTATION.md
-│   │   ├── DEPLOYABLE-PACKAGE-IMPLEMENTATION.md
-│   │   ├── DEPLOYMENT-INSTRUCTIONS.md
-│   │   ├── DEPLOYMENT-READY.md
-│   │   ├── FRONTEND-EXECUTION-INTEGRATION.md
-│   │   ├── FRONTEND-EXECUTION-SUMMARY.md
-│   │   ├── HTC-TRAINER-UI-ENHANCEMENT.md
-│   │   ├── MCP-LOGS-IMPLEMENTATION.md
-│   │   ├── MCP-TOOL-EXECUTOR-README.md
-│   │   ├── MCP-TOOL-SCHEMA-IMPLEMENTATION.md
-│   │   ├── MODEL-CREATOR-POLISH-IMPLEMENTATION.md
-│   │   ├── OPTIMIZED-STRUCTURE.md
-│   │   ├── RAG-CHAT-IMPLEMENTATION.md
-│   │   ├── RAG-INTEGRATION.md
-│   │   ├── README-HTC-CSV-RAG.md
-│   │   ├── README-HTC-FEEDBACK-LOOP.md
-│   │   ├── README-HTC-PROMPT-EDITOR.md
-│   │   ├── README-MULTI-QUERY.md
-│   │   ├── README-OCI.md
-│   │   ├── README-TENANT-SYNC.md
-│   │   ├── README.md
-│   │   ├── SQLITE-LOGGING-README.md
-│   │   └── SYNC-ENGINE-AUTO-EMBED-IMPLEMENTATION.md
 │   ├── demo-flow.md
 │   ├── deployment
 │   │   ├── CI-CD-SETUP.md
@@ -136,18 +115,6 @@
 │   │   ├── security_policy.txt
 │   │   └── tenant_management.txt
 │   ├── guides
-│   ├── legacy
-│   │   ├── archive
-│   │   │   ├── CONFIGURATION.md
-│   │   │   ├── DEMO_CHANGES.md
-│   │   │   ├── DOCKER-COMPOSE-BUILD.md
-│   │   │   ├── INTERVIEW_PLATFORM_ENGINEER.md
-│   │   │   ├── PHASE3_4_SUMMARY.md
-│   │   │   ├── demo-db
-│   │   │   ├── deployment-fixed.md
-│   │   │   ├── docker-hub-setup.md
-│   │   │   └── phase5-6-summary.md
-│   │   └── backups.tar.gz
 │   ├── sec-cve
 │   │   ├── CVE-2023-4863-RESPONSE.md
 │   │   ├── CVE-2025-6556-RESPONSE.md
@@ -157,30 +124,32 @@
 │   ├── services
 │   │   ├── auditguard
 │   │   │   └── README.md
-│   │   ├── igris-logic
-│   │   │   └── README.md
-│   │   ├── james-logic
-│   │   │   └── README.md
-│   │   ├── katie-logic
-│   │   │   └── README.md
-│   │   └── whis-webscraper
+│   │   └── james-logic
 │   │       └── README.md
 │   └── session-management.md
+├── fix-lint-errors.py
 ├── fix_lint_script.py
 ├── fix_security_vulnerabilities.py
+├── format-and-lint.sh
 ├── frontend
 │   ├── Dockerfile
 │   ├── README.md
 │   ├── create-htpasswd.sh
 │   ├── dist
 │   │   ├── assets
-│   │   │   ├── index-B-8aWSEP.css
-│   │   │   ├── index-Cocx1jCL.js
-│   │   │   ├── index-Cocx1jCL.js.map
+│   │   │   ├── DemoDashboard-C-VEjcX6.css
+│   │   │   ├── DemoDashboard-C4beRs54.js
+│   │   │   ├── DemoDashboard-C4beRs54.js.map
+│   │   │   ├── Login-B_SY1GJM.css
+│   │   │   ├── Login-CBX2dBpc.js
+│   │   │   ├── Login-CBX2dBpc.js.map
+│   │   │   ├── index-BwlZxtDR.css
+│   │   │   ├── index-C_y0vZm6.js
+│   │   │   ├── index-C_y0vZm6.js.map
 │   │   │   ├── utils-Dq7h7Pqt.js
 │   │   │   ├── utils-Dq7h7Pqt.js.map
-│   │   │   ├── vendor-Cex9wGGI.js
-│   │   │   └── vendor-Cex9wGGI.js.map
+│   │   │   ├── vendor-Dmz4AmqH.js
+│   │   │   └── vendor-Dmz4AmqH.js.map
 │   │   ├── audio
 │   │   │   └── arise-activation.mp3
 │   │   ├── index.html
@@ -209,6 +178,7 @@
 │   │   │   ├── DemoPipeline.vue
 │   │   │   ├── DemoRAG.vue
 │   │   │   ├── DropZone.vue
+│   │   │   ├── JadeToast.vue
 │   │   │   ├── MLCreator.vue
 │   │   │   ├── ModelPredictor.vue
 │   │   │   ├── OrbResultCard.vue
@@ -223,10 +193,12 @@
 │   │   │   ├── index.js
 │   │   │   ├── train_model.js
 │   │   │   ├── useAgentStore.js
+│   │   │   ├── useJadeStore.js
 │   │   │   ├── useMainStore.js
 │   │   │   ├── useTaskStore.js
 │   │   │   └── useUserStore.js
 │   │   ├── utils
+│   │   │   ├── fileIcons.js
 │   │   │   └── uploadToServer.js
 │   │   └── views
 │   │       ├── AboutDemo.vue
@@ -235,6 +207,7 @@
 │   │       ├── AgentCreator.vue
 │   │       ├── AutoRunner.vue
 │   │       ├── Demo.vue
+│   │       ├── DemoAssistant.vue
 │   │       ├── DemoDashboard.vue
 │   │       ├── DemoSync.vue
 │   │       ├── HTC.vue
@@ -248,12 +221,14 @@
 │   │       ├── MLBuilder.vue
 │   │       ├── MLCreator.vue
 │   │       ├── ModelCreator.vue
+│   │       ├── ModelTrainer.vue
 │   │       ├── OrbLibrary.vue
 │   │       ├── RAGSearch.vue
 │   │       ├── Reports.vue
 │   │       ├── SearchMemory.vue
 │   │       ├── SyncDashboard.vue
 │   │       ├── ToolExecutor.vue
+│   │       ├── ToolHistory.vue
 │   │       └── WhisPipeline.vue
 │   ├── tailwind.config.js
 │   ├── tsconfig.json
@@ -277,6 +252,11 @@
 │   ├── frontend-service.yaml
 │   ├── ingress.yaml
 │   ├── ml-models.yaml
+│   ├── monitoring
+│   │   ├── README.md
+│   │   ├── grafana-dashboard.yaml
+│   │   ├── prometheus-rules.yaml
+│   │   └── service-monitor.yaml
 │   ├── namespace.yaml
 │   ├── pipeline.yaml
 │   ├── postgres.yaml
@@ -370,6 +350,7 @@
 │   ├── README-UPLOAD-QA.md
 │   ├── README.md
 │   ├── chroma_db
+│   ├── cli.py
 │   ├── config
 │   │   ├── llm_config.yaml
 │   │   └── rag_config.json
@@ -389,6 +370,9 @@
 │   ├── main.py
 │   ├── requirements.txt
 │   ├── routes
+│   │   ├── feedback.py
+│   │   ├── prompt_editor.py
+│   │   ├── status.py
 │   │   └── upload_csv.py
 │   ├── schemas
 │   │   ├── __init__.py
@@ -400,7 +384,9 @@
 │   │   ├── test_multi_query.py
 │   │   └── test_upload_qa.py
 │   ├── uploads
+│   │   └── csv
 │   └── vectorstore
+│       └── index.pkl
 ├── releases
 │   └── demo-linkops-v1.0.0.tar.gz
 ├── scripts
@@ -413,11 +399,8 @@
 │   │   ├── start-auto-runner.sh
 │   │   ├── start-tenant-sync.sh
 │   │   └── start-upload-qa.sh
-│   ├── demo_executor_workflow.py
-│   ├── test_auto_runner.py
-│   ├── test_executor.py
-│   ├── test_mcp_schema.py
-│   └── test_sqlite_logger.py
+│   ├── cli.py
+│   └── demo_executor_workflow.py
 ├── sync_engine
 │   ├── Dockerfile
 │   ├── auto_embed.py
@@ -429,12 +412,31 @@
 │   ├── temp
 │   └── watcher.py
 ├── tests
-│   └── e2e
-│       └── session.spec.ts
+│   ├── README.md
+│   ├── e2e
+│   │   └── session.spec.ts
+│   ├── integration
+│   │   └── test_unified_api.py
+│   └── unit
+│       ├── test
+│       │   ├── __init__.py
+│       │   └── test_query.py
+│       ├── test_agent_creator.py
+│       ├── test_auto_runner.py
+│       ├── test_executor.py
+│       ├── test_mcp_schema.py
+│       ├── test_model_creator.py
+│       ├── test_multi_query.py
+│       ├── test_sqlite_logger.py
+│       └── test_upload_qa.py
 ├── unified-api
 │   ├── Dockerfile
 │   ├── db
 │   │   ├── execution_logs
+│   │   ├── execution_logs.db
+│   │   ├── htc_logs
+│   │   ├── htc_uploads
+│   │   ├── logs
 │   │   └── mcp_tools
 │   ├── dependencies.py
 │   ├── executor
@@ -444,7 +446,12 @@
 │   │   ├── execution_logger.py
 │   │   └── executor.py
 │   ├── main.py
+│   ├── models
+│   │   └── demo_vendor_model.py
 │   ├── rag
+│   │   ├── loaders
+│   │   │   └── fake_property_loader.py
+│   │   ├── search.py
 │   │   └── uploads
 │   ├── requirements-light.txt
 │   ├── requirements.txt
@@ -457,6 +464,7 @@
 │   │   ├── demo_sync.py
 │   │   ├── executor.py
 │   │   ├── htc.py
+│   │   ├── jade_assistant.py
 │   │   ├── mcp_tool.py
 │   │   ├── ml_builder.py
 │   │   ├── ml_models.py
@@ -466,6 +474,7 @@
 │   │   ├── rag.py
 │   │   ├── status.py
 │   │   ├── sync.py
+│   │   ├── sync_engine.py
 │   │   ├── tenant_sync.py
 │   │   └── train_model.py
 │   ├── schemas
@@ -474,4 +483,4 @@
 │   └── test_unified_api.py
 └── vectorstore
 
-109 directories, 365 files
+112 directories, 371 files

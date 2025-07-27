@@ -1,0 +1,33 @@
+{
+  "category": "compliance",
+  "workflows": {
+    "safety_inspections": {
+      "question": "Schedule annual fire safety inspection for all units",
+      "expected_tool": "schedule_safety_inspection.json",
+      "expected_command": "schedule_inspection --type fire_safety --scope all_units --inspector certified_fire_inspector --compliance_deadline '2025-03-31'",
+      "regulatory_requirement": "Annual fire safety inspection required by local ordinance",
+      "documentation_required": ["inspection_certificates", "remediation_plans", "tenant_notifications"]
+    },
+    "habitability_standards": {
+      "question": "Check unit 506 for habitability violations after tenant complaint",
+      "expected_tool": "habitability_inspection.json", 
+      "expected_command": "inspect_habitability --unit 506 --complaint_type 'heating_failure' --inspector property_manager --response_time 24hrs",
+      "legal_timeline": "24 hours to respond to habitability complaints",
+      "remediation_required": true
+    },
+    "lease_compliance": {
+      "question": "Verify all leases have required disclosures and addendums",
+      "expected_tool": "lease_audit.json",
+      "expected_command": "audit_leases --check_disclosures true --verify_addendums true --generate_report true",
+      "required_disclosures": ["lead_paint", "bed_bug_history", "flood_zone", "mold_disclosure"],
+      "audit_frequency": "quarterly"
+    },
+    "financial_reporting": {
+      "question": "Generate monthly financial report for property owners",
+      "expected_tool": "financial_report.json",
+      "expected_command": "generate_financial_report --period monthly --include_variance true --owner_copy true --format pdf",
+      "required_sections": ["income_statement", "cash_flow", "variance_analysis", "delinquency_report"],
+      "distribution_list": ["property_owners", "accounting_firm", "property_manager"]
+    }
+  }
+}

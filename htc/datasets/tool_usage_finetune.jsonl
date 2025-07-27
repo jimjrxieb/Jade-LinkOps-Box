@@ -1,0 +1,15 @@
+{"instruction": "Send late rent notice to Tony Stark", "input": "", "output": "email_late_notice --tenant 'Tony Stark' --amount_due 2500 --days_late 7"}
+{"instruction": "Who are the tenants more than 15 days late?", "input": "delinquency.csv", "output": "SELECT * FROM tenants WHERE days_late > 15 ORDER BY days_late DESC"}
+{"instruction": "Recommend a vendor for HVAC issues", "input": "workorders.csv", "output": "vendor_recommend --type HVAC --urgency high --budget_max 5000"}
+{"instruction": "Notify maintenance about leak in unit 303", "input": "", "output": "send_email --to maintenance@zrs.com --subject 'Leak in 303' --priority urgent"}
+{"instruction": "Schedule inspection for Building A next week", "input": "", "output": "schedule_inspection --building 'Building A' --type routine --date_range '2025-02-03,2025-02-07'"}
+{"instruction": "Start lease renewal for Jane Smith", "input": "", "output": "lease_renewal --tenant 'Jane Smith' --current_rent 1800 --new_rate 1950 --send_notice true"}
+{"instruction": "Find all maintenance requests over $1000", "input": "workorders.csv", "output": "SELECT * FROM workorders WHERE cost > 1000 AND status = 'pending'"}
+{"instruction": "Send rent reminder to all tenants", "input": "", "output": "bulk_email --template rent_reminder --recipient_list all_tenants --send_date '2025-01-25'"}
+{"instruction": "Check which units need quarterly inspection", "input": "inspection_log.csv", "output": "SELECT unit_number FROM inspections WHERE last_inspection < DATE_SUB(NOW(), INTERVAL 3 MONTH)"}
+{"instruction": "Escalate emergency maintenance request", "input": "", "output": "escalate_maintenance --priority emergency --notify_manager true --response_time '2 hours'"}
+{"instruction": "Generate monthly rent roll report", "input": "tenants.csv", "output": "generate_report --type rent_roll --month current --include_delinquencies true"}
+{"instruction": "Update tenant contact information", "input": "", "output": "update_tenant --tenant_id 1234 --phone '555-0123' --email 'newemail@example.com'"}
+{"instruction": "Process security deposit refund", "input": "", "output": "process_refund --tenant 'Former Tenant' --amount 1500 --deductions 200 --reason 'lease_end'"}
+{"instruction": "Schedule pest control for Building B", "input": "", "output": "schedule_service --service_type pest_control --building 'Building B' --frequency monthly"}
+{"instruction": "Create work order for plumbing repair", "input": "", "output": "create_workorder --type plumbing --unit 205 --description 'Clogged drain in kitchen' --priority medium"}

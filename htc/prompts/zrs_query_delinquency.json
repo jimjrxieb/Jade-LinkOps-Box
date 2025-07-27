@@ -1,0 +1,35 @@
+{
+  "category": "financial",
+  "question": "Who hasn't paid rent in over 15 days?",
+  "expected_tool": "query_delinquency", 
+  "expected_command": "python tools/query_delinquency.py --days '15'",
+  "context_tag": "delinquency_analysis",
+  "priority": "high",
+  "variations": [
+    {
+      "question": "Show me tenants more than 15 days late",
+      "context": "collection_review"
+    },
+    {
+      "question": "List all delinquent tenants over 15 days",
+      "context": "overdue_accounts"
+    },
+    {
+      "question": "Building A tenants who are late on rent?",
+      "expected_command": "python tools/query_delinquency.py --days '1' --building 'Building A'",
+      "context": "building_specific"
+    },
+    {
+      "question": "Who owes more than $1000 in back rent?",
+      "expected_command": "python tools/query_delinquency.py --days '1' --amount '1000'",
+      "context": "high_value_delinquency"
+    },
+    {
+      "question": "Worst delinquency cases by amount owed",
+      "expected_command": "python tools/query_delinquency.py --days '1' --sort 'amount_owed'",
+      "context": "prioritized_collection"
+    }
+  ],
+  "reporting_frequency": "Daily for collections team, weekly for management",
+  "action_triggers": "15+ days = formal notice, 30+ days = legal consultation"
+}

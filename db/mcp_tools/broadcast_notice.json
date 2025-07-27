@@ -1,0 +1,93 @@
+{
+  "name": "broadcast_notice",
+  "description": "Send mass notifications to all residents or specific groups via email, SMS, or posted notices",
+  "category": "tenant_communication",
+  "priority": "medium",
+  "parameters": {
+    "message": {
+      "type": "string",
+      "description": "Main message content to send",
+      "required": true,
+      "example": "Pool maintenance scheduled for February 5-7. Pool will be closed during this time."
+    },
+    "subject": {
+      "type": "string",
+      "description": "Subject line for email notifications",
+      "required": true,
+      "example": "Pool Closure Notice - February 5-7"
+    },
+    "recipient_group": {
+      "type": "string",
+      "description": "Group of recipients to target",
+      "required": true,
+      "options": ["all_tenants", "building_a", "building_b", "delinquent_only", "current_leases", "month_to_month"],
+      "example": "all_tenants"
+    },
+    "delivery_method": {
+      "type": "array",
+      "description": "How to deliver the message",
+      "required": true,
+      "options": ["email", "sms", "posted_notice", "portal_notification"],
+      "example": ["email", "posted_notice"]
+    },
+    "send_time": {
+      "type": "string",
+      "description": "When to send the message",
+      "required": false,
+      "format": "YYYY-MM-DD HH:MM",
+      "default": "immediate",
+      "example": "2025-02-01 09:00"
+    },
+    "priority": {
+      "type": "string",
+      "description": "Message priority level",
+      "required": false,
+      "options": ["low", "normal", "high", "urgent"],
+      "default": "normal",
+      "example": "normal"
+    },
+    "attachments": {
+      "type": "array",
+      "description": "Files to attach to the message",
+      "required": false,
+      "example": ["pool_schedule.pdf", "contact_info.jpg"]
+    }
+  },
+  "execution": {
+    "command": "python", 
+    "script": "mass_notification.py",
+    "args": [
+      "--message", "{message}",
+      "--subject", "{subject}",
+      "--recipients", "{recipient_group}",
+      "--methods", "{delivery_method}",
+      "--send_time", "{send_time}",
+      "--priority", "{priority}",
+      "--attachments", "{attachments}"
+    ]
+  },
+  "output": {
+    "notification_id": "string",
+    "total_recipients": "integer",
+    "delivery_status": {
+      "email_sent": "integer",
+      "sms_sent": "integer", 
+      "notices_posted": "integer",
+      "portal_notifications": "integer"
+    },
+    "failed_deliveries": [
+      {
+        "recipient": "string",
+        "method": "string",
+        "reason": "string"
+      }
+    ],
+    "estimated_reach": "number"
+  },
+  "templates": {
+    "rent_reminder": "Monthly rent reminder template",
+    "maintenance_notice": "Scheduled maintenance notification",
+    "policy_update": "Policy or rule change announcement",
+    "emergency_alert": "Emergency or urgent safety notice"
+  }
+}

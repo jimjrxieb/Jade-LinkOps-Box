@@ -1,0 +1,21 @@
+{
+  "category": "rent_collection",
+  "question": "Send a late rent notice to Peter Parker in unit 205",
+  "expected_tool": "send_late_notice.json",
+  "expected_command": "send_late_notice --tenant_name 'Peter Parker' --unit_number '205' --amount_due 1200 --days_late 5 --template standard_late_notice",
+  "context_tag": "tenant_billing",
+  "priority": "high",
+  "workflow": "delinquency_management",
+  "legal_requirements": "Must include payment deadline and late fee disclosure",
+  "escalation_timeline": "7 days before next action",
+  "variations": [
+    {
+      "question": "Send friendly reminder to Mary Jane for late rent",
+      "expected_command": "send_late_notice --tenant_name 'Mary Jane' --unit_number '301' --amount_due 1500 --days_late 3 --template friendly_reminder"
+    },
+    {
+      "question": "Send final notice to Bruce Wayne - 15 days late",
+      "expected_command": "send_late_notice --tenant_name 'Bruce Wayne' --unit_number '1001' --amount_due 3000 --days_late 15 --template final_notice"
+    }
+  ]
+}

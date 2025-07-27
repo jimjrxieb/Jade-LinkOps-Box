@@ -1,13 +1,57 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-import router from './router';
-import { createPinia } from 'pinia';
-import axios from 'axios';
+import { createApp } from 'vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import { createPinia } from 'pinia'
+import App from './App.vue'
 
-// Point axios at your API gateway.
-// Default to localhost:9000 for development, can be overridden with VITE_API_URL
-axios.defaults.baseURL =
-  import.meta.env.VITE_API_URL || 'http://localhost:9000';
+// Import styles
+import './assets/tailwind.css'
 
-const pinia = createPinia();
-createApp(App).use(pinia).use(router).mount('#app');
+// Create router
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
+    {
+      path: '/',
+      component: () => import('./views/LandingAssistant.vue')
+    },
+    {
+      path: '/landing',
+      component: () => import('./views/LandingAssistant.vue')
+    },
+    {
+      path: '/login',
+      component: () => import('./views/Login.vue')
+    },
+    {
+      path: '/dashboard',
+      component: () => import('./views/DemoDashboard.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/htc-trainer',
+      component: () => import('./components/HTCTrainer.vue'),
+      meta: { requiresAuth: true }
+    }
+  ]
+})
+
+// Auth guard
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      next('/login')
+      return
+    }
+  }
+  next()
+})
+
+// Create Pinia store
+const pinia = createPinia()
+
+// Create and mount app
+const app = createApp(App)
+app.use(pinia)
+app.use(router)
+app.mount('#app')

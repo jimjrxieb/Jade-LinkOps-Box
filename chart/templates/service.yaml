@@ -1,12 +1,15 @@
+{{- range $name, $svc := dict "frontend" .Values.frontend "api" .Values.api "rag" .Values.rag "sync" .Values.sync "models" .Values.models "pipeline" .Values.pipeline }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "demo-linkops.fullname" . }}-frontend
+  name: {{ $name }}
+  namespace: {{ $.Values.global.namespace }}
 spec:
-  type: {{ .Values.service.type }}
   selector:
-    app: {{ include "demo-linkops.name" . }}
-    component: frontend
+    app: {{ $name }}
   ports:
-  - port: {{ .Values.service.frontend.port }}
-    targetPort: {{ .Values.service.frontend.port }} 
+    - protocol: TCP
+      port: {{ $svc.port }}
+      targetPort: {{ $svc.port }}
+---
+{{- end }}

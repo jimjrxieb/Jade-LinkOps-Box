@@ -18,6 +18,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from fastapi.responses import JSONResponse
 
+# Import session cleanup middleware
+from middleware.session_cleanup import setup_session_cleanup
+
 # Import routers from each service
 from routers import (
     agent_builder,
@@ -27,12 +30,14 @@ from routers import (
     demo_sync,
     executor,
     htc,
+    htc_trainer,
     jade_assistant,
     mcp_tool,
     ml_builder,
     ml_models,
     model_creator,
     pipeline,
+    property_management,
     rag,
     sync_engine,
     train_model,
@@ -65,6 +70,9 @@ app.add_middleware(
 # Add trusted host middleware for security
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=["localhost", "127.0.0.1", "*"])
 
+# Add session cleanup middleware for privacy
+setup_session_cleanup(app)
+
 # Include routers from each service
 app.include_router(
     model_creator.router, prefix="/model-creator", tags=["ML Model Creator"]
@@ -92,6 +100,8 @@ app.include_router(executor.router, prefix="/executor", tags=["MCP Tool Executor
 
 app.include_router(htc.router, prefix="/htc", tags=["HTC Document Memory"])
 
+app.include_router(htc_trainer.router, prefix="/htc-trainer", tags=["HTC Autonomous Learning"])
+
 app.include_router(auto_runner.router, prefix="/auto-runner", tags=["Auto Tool Runner"])
 
 app.include_router(demo_sync.router, tags=["Demo Sync"])
@@ -102,6 +112,7 @@ app.include_router(auth.router, prefix="/auth", tags=["auth"])
 
 app.include_router(sync_engine.router, tags=["Sync Engine"])
 app.include_router(jade_assistant.router, tags=["Jade Assistant"])
+app.include_router(property_management.router, prefix="/property", tags=["ZRS Property Management"])
 
 
 # Example of protecting a full-access endpoint
@@ -157,6 +168,7 @@ async def root():
             "mcp_tool": "/mcp-tool",
             "executor": "/executor",
             "htc": "/htc",
+            "htc_trainer": "/htc-trainer",
             "docs": "/docs",
             "health": "/health",
         },

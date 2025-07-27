@@ -1,28 +1,54 @@
-{{- if .Values.ingress.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "demo-linkops.fullname" . }}-ingress
+  name: demo-linkops-ingress
+  namespace: {{ .Values.global.namespace }}
   annotations:
-    {{- toYaml .Values.ingress.annotations | nindent 4 }}
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    {{- range .Values.ingress.hosts }}
-    - host: {{ .host }}
+    - host: demo.local
       http:
         paths:
-        {{- range .paths }}
-        - path: {{ .path }}
-          pathType: Prefix
-          backend:
-            service:
-              name: {{ include "demo-linkops.fullname" $ }}-{{ .service }}
-              port:
-                number: {{ .port }}
-        {{- end }}
-    {{- end }}
-  {{- if .Values.ingress.tls }}
-  tls:
-    {{- toYaml .Values.ingress.tls | nindent 4 }}
-  {{- end }}
-{{- end }} 
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: {{ .Values.frontend.port }}
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: api
+                port:
+                  number: {{ .Values.api.port }}
+          - path: /rag
+            pathType: Prefix
+            backend:
+              service:
+                name: rag
+                port:
+                  number: {{ .Values.rag.port }}
+          - path: /sync
+            pathType: Prefix
+            backend:
+              service:
+                name: sync
+                port:
+                  number: {{ .Values.sync.port }}
+          - path: /models
+            pathType: Prefix
+            backend:
+              service:
+                name: models
+                port:
+                  number: {{ .Values.models.port }}
+          - path: /pipeline
+            pathType: Prefix
+            backend:
+              service:
+                name: pipeline
+                port:
+                  number: {{ .Values.pipeline.port }}

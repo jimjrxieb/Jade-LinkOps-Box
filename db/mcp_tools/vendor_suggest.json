@@ -1,0 +1,75 @@
+{
+  "name": "vendor_suggest",
+  "description": "Recommend best vendor based on work type, cost, availability, and performance history",
+  "category": "vendor_management", 
+  "priority": "medium",
+  "parameters": {
+    "work_type": {
+      "type": "string",
+      "description": "Type of work needed",
+      "required": true,
+      "options": ["plumbing", "electrical", "hvac", "roofing", "flooring", "painting", "landscaping", "general"],
+      "example": "hvac"
+    },
+    "building": {
+      "type": "string",
+      "description": "Building or property location",
+      "required": false,
+      "example": "Building A"
+    },
+    "urgency": {
+      "type": "string",
+      "description": "Urgency level for the work",
+      "required": true,
+      "options": ["emergency", "urgent", "routine"],
+      "example": "urgent"
+    },
+    "budget_max": {
+      "type": "number",
+      "description": "Maximum budget for the work",
+      "required": false,
+      "example": 5000
+    },
+    "availability_required": {
+      "type": "string",
+      "description": "When vendor availability is needed",
+      "required": false,
+      "example": "within_24_hours"
+    }
+  },
+  "execution": {
+    "command": "python",
+    "script": "vendor_selection.py",
+    "args": [
+      "--work_type", "{work_type}",
+      "--building", "{building}",
+      "--urgency", "{urgency}",
+      "--budget", "{budget_max}",
+      "--availability", "{availability_required}"
+    ]
+  },
+  "output": {
+    "recommended_vendors": [
+      {
+        "vendor_name": "string",
+        "contact_info": "string",
+        "estimated_cost": "number",
+        "rating": "number",
+        "availability": "string",
+        "response_time": "string"
+      }
+    ],
+    "selection_criteria": {
+      "cost_weight": 0.3,
+      "quality_rating": 0.4,
+      "response_time": 0.2,
+      "availability": 0.1
+    }
+  },
+  "vendor_database": {
+    "performance_tracking": true,
+    "cost_history": true,
+    "quality_ratings": true,
+    "response_times": true
+  }
+}

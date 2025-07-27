@@ -1,0 +1,82 @@
+{
+  "name": "schedule_turnover",
+  "description": "Schedule unit cleaning and preparation for new tenant move-in after move-out",
+  "category": "property_management",
+  "priority": "medium",
+  "parameters": {
+    "unit_number": {
+      "type": "string",
+      "description": "Unit number for turnover",
+      "required": true,
+      "example": "402"
+    },
+    "move_out_date": {
+      "type": "string",
+      "description": "Date tenant moved out",
+      "required": true,
+      "format": "YYYY-MM-DD",
+      "example": "2025-01-31"
+    },
+    "new_lease_start": {
+      "type": "string",
+      "description": "New tenant move-in date",
+      "required": false,
+      "format": "YYYY-MM-DD",
+      "example": "2025-02-15"
+    },
+    "cleaning_level": {
+      "type": "string",
+      "description": "Level of cleaning required",
+      "required": true,
+      "options": ["standard", "deep_clean", "renovation_clean"],
+      "default": "standard",
+      "example": "deep_clean"
+    },
+    "repairs_needed": {
+      "type": "array",
+      "description": "List of repairs needed before re-renting",
+      "required": false,
+      "example": ["paint_touch_up", "carpet_cleaning", "appliance_check"]
+    },
+    "inspection_required": {
+      "type": "boolean",
+      "description": "Whether post-cleaning inspection is needed",
+      "required": false,
+      "default": true
+    }
+  },
+  "execution": {
+    "command": "python",
+    "script": "unit_turnover.py",
+    "args": [
+      "--unit", "{unit_number}",
+      "--move_out", "{move_out_date}",
+      "--move_in", "{new_lease_start}",
+      "--cleaning", "{cleaning_level}",
+      "--repairs", "{repairs_needed}",
+      "--inspection", "{inspection_required}"
+    ]
+  },
+  "output": {
+    "turnover_id": "string",
+    "scheduled_tasks": [
+      {
+        "task": "string",
+        "scheduled_date": "string",
+        "estimated_duration": "string",
+        "assigned_to": "string"
+      }
+    ],
+    "estimated_completion": "string",
+    "total_cost_estimate": "number"
+  },
+  "workflows": {
+    "standard_timeline": {
+      "day_1": "move_out_inspection",
+      "day_2": "deep_cleaning",
+      "day_3": "repairs_maintenance", 
+      "day_4": "final_inspection",
+      "day_5": "ready_for_occupancy"
+    }
+  }
+}

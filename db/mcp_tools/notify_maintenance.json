@@ -1,0 +1,81 @@
+{
+  "name": "notify_maintenance",
+  "description": "Alert maintenance team about property issues with automatic priority assignment and vendor dispatch",
+  "category": "maintenance",
+  "priority": "high",
+  "parameters": {
+    "unit_number": {
+      "type": "string",
+      "description": "Unit where issue is located",
+      "required": true,
+      "example": "303"
+    },
+    "issue_type": {
+      "type": "string",
+      "description": "Type of maintenance issue",
+      "required": true,
+      "options": ["plumbing", "electrical", "hvac", "appliance", "general", "emergency"],
+      "example": "plumbing"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the issue",
+      "required": true,
+      "example": "Water leak from ceiling in kitchen area"
+    },
+    "urgency": {
+      "type": "string",
+      "description": "Priority level of the request",
+      "required": true,
+      "options": ["emergency", "urgent", "routine"],
+      "example": "emergency"
+    },
+    "tenant_contact": {
+      "type": "string",
+      "description": "Tenant phone number for coordination",
+      "required": false,
+      "example": "555-0123"
+    },
+    "estimated_cost": {
+      "type": "number",
+      "description": "Estimated repair cost if known",
+      "required": false,
+      "example": 150
+    }
+  },
+  "execution": {
+    "command": "python",
+    "script": "maintenance_dispatch.py",
+    "args": [
+      "--unit", "{unit_number}",
+      "--type", "{issue_type}",
+      "--description", "{description}",
+      "--urgency", "{urgency}",
+      "--contact", "{tenant_contact}",
+      "--cost_estimate", "{estimated_cost}"
+    ]
+  },
+  "output": {
+    "work_order_id": "string",
+    "assigned_tech": "string",
+    "estimated_arrival": "string",
+    "notification_sent": "boolean"
+  },
+  "automation": {
+    "emergency": {
+      "response_time": "2 hours",
+      "notification": ["property_manager", "on_call_tech"],
+      "approval_limit": 2000
+    },
+    "urgent": {
+      "response_time": "24 hours",
+      "notification": ["maintenance_team"],
+      "approval_limit": 1000
+    },
+    "routine": {
+      "response_time": "72 hours",
+      "notification": ["maintenance_coordinator"],
+      "approval_limit": 500
+    }
+  }
+}

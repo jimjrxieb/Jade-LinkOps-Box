@@ -28,6 +28,9 @@ export const useMainStore = defineStore('main', {
     async setToken(token) {
       this.token = token;
       if (token) {
+        // Save token to localStorage
+        localStorage.setItem('token', token);
+        
         // Set axios auth header
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
@@ -64,6 +67,8 @@ export const useMainStore = defineStore('main', {
           this.logout();
         }
       } else {
+        // Remove token from localStorage
+        localStorage.removeItem('token');
         delete axios.defaults.headers.common['Authorization'];
       }
     },
@@ -141,6 +146,9 @@ export const useMainStore = defineStore('main', {
       this.showSessionWarning = false;
       this.sessionTimeLeft = 0;
 
+      // Clear localStorage
+      localStorage.removeItem('token');
+      
       // Clear axios auth header
       delete axios.defaults.headers.common['Authorization'];
 
@@ -159,14 +167,4 @@ export const useMainStore = defineStore('main', {
     },
   },
 
-  persist: {
-    enabled: true,
-    strategies: [
-      {
-        key: 'demo-linkops-auth',
-        storage: localStorage,
-        paths: ['token', 'role', 'user'],
-      },
-    ],
-  },
 });

@@ -1,24 +1,40 @@
+@import './holo-theme.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom styles for LinkOps */
+/* Base styles */
 @layer base {
+  html {
+    @apply antialiased;
+  }
+  
   body {
-    @apply bg-gray-900 text-gray-100;
+    @apply bg-gray-900 text-white font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-jade-600 rounded-full hover:bg-jade-500 transition-colors;
   }
 }
 
-@layer components {
-  .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition-colors;
-  }
-
-  .btn-secondary {
-    @apply bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded transition-colors;
-  }
-
-  .card {
-    @apply bg-gray-800 rounded-lg p-6 border border-gray-700;
+/* Focus styles */
+@layer utilities {
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-jade-500 focus:ring-offset-2 focus:ring-offset-gray-900;
   }
 }

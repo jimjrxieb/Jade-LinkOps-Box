@@ -1,15 +1,25 @@
 <template>
   <div id="app">
+    <TopNavigation v-if="showNavigation" />
     <router-view />
     <SessionTimer v-if="store.isAuthenticated" />
   </div>
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import { useMainStore } from '@/store/useMainStore';
 import SessionTimer from '@/components/SessionTimer.vue';
+import TopNavigation from '@/components/TopNavigation.vue';
 
 const store = useMainStore();
+const route = useRoute();
+
+// Show navigation on all pages except login
+const showNavigation = computed(() => {
+  return route.path !== '/login';
+});
 </script>
 
 <style>

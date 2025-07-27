@@ -1,0 +1,70 @@
+{
+  "name": "send_late_notice",
+  "description": "Send late rent notice email to tenant with customizable templates and fee calculation",
+  "category": "rent_collection",
+  "priority": "high",
+  "parameters": {
+    "tenant_name": {
+      "type": "string",
+      "description": "Full name of the tenant",
+      "required": true,
+      "example": "Tony Stark"
+    },
+    "unit_number": {
+      "type": "string", 
+      "description": "Unit/apartment number",
+      "required": true,
+      "example": "401"
+    },
+    "amount_due": {
+      "type": "number",
+      "description": "Total amount owed including late fees",
+      "required": true,
+      "example": 2500
+    },
+    "days_late": {
+      "type": "integer",
+      "description": "Number of days past due",
+      "required": true,
+      "example": 7
+    },
+    "template": {
+      "type": "string",
+      "description": "Email template to use",
+      "required": false,
+      "default": "standard_late_notice",
+      "options": ["friendly_reminder", "standard_late_notice", "final_notice", "legal_warning"]
+    },
+    "include_late_fee": {
+      "type": "boolean",
+      "description": "Whether to include late fee in notice",
+      "required": false,
+      "default": true
+    }
+  },
+  "execution": {
+    "command": "python",
+    "script": "send_email.py",
+    "args": [
+      "--template", "{template}",
+      "--tenant", "{tenant_name}",
+      "--unit", "{unit_number}",
+      "--amount", "{amount_due}",
+      "--days_late", "{days_late}",
+      "--late_fee", "{include_late_fee}"
+    ]
+  },
+  "output": {
+    "email_sent": "boolean",
+    "email_id": "string",
+    "timestamp": "string",
+    "next_action_date": "string"
+  },
+  "workflows": {
+    "escalation_path": [
+      {"days": 3, "action": "phone_call"},
+      {"days": 7, "action": "certified_mail"},
+      {"days": 14, "action": "legal_notice"}
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "category": "unit_turnover",
+  "question": "Schedule cleaning for unit 509 after move-out on 2025-08-01",
+  "expected_tool": "schedule_turnover",
+  "expected_command": "python tools/schedule_turnover.py --unit '509' --moveout '2025-08-01'",
+  "context_tag": "unit_turnover",
+  "priority": "medium",
+  "variations": [
+    {
+      "question": "Unit 509 turnover needed for August 1st move-out",
+      "context": "vacancy_preparation"
+    },
+    {
+      "question": "Schedule deep cleaning for 509 - tenant moved out 8/1",
+      "expected_command": "python tools/schedule_turnover.py --unit '509' --moveout '2025-08-01' --deep_clean true",
+      "context": "deep_cleaning_needed"
+    },
+    {
+      "question": "Prepare unit 509 for new tenant moving in August 15th",
+      "expected_command": "python tools/schedule_turnover.py --unit '509' --moveout '2025-08-01' --movein '2025-08-15'",
+      "context": "quick_turnaround"
+    },
+    {
+      "question": "Fast turnover needed for 509 - new lease starts soon",
+      "expected_command": "python tools/schedule_turnover.py --unit '509' --moveout '2025-08-01' --movein '2025-08-05'",
+      "context": "urgent_turnover"
+    }
+  ],
+  "typical_timeline": "5-7 days for standard turnover, 3-4 days for quick turnaround",
+  "services_included": "Cleaning, minor repairs, inspection, photography"
+}

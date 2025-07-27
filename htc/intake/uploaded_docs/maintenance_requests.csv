@@ -1,0 +1,11 @@
+request_id,property_id,unit_number,issue_type,urgency,reported_date,description,tenant_impact,estimated_cost
+REQ001,PROP123,101,plumbing,high,2024-01-15,Kitchen sink leak flooding counter,High,150
+REQ002,PROP456,205,hvac,medium,2024-01-16,AC not cooling properly,Medium,275
+REQ003,PROP789,301,electrical,high,2024-01-17,Power outlet sparking in bedroom,High,200
+REQ004,PROP123,102,general,low,2024-01-18,Squeaky door hinges,Low,50
+REQ005,PROP456,103,plumbing,medium,2024-01-19,Toilet running constantly,Medium,120
+REQ006,PROP789,204,hvac,high,2024-01-20,Heating not working in winter,High,320
+REQ007,PROP123,301,electrical,medium,2024-01-21,Light switch not working,Medium,75
+REQ008,PROP456,106,general,low,2024-01-22,Cabinet door loose,Low,35
+REQ009,PROP789,402,plumbing,high,2024-01-23,Water heater leaking,High,400
+REQ010,PROP123,203,hvac,medium,2024-01-24,Poor air circulation,Medium,180

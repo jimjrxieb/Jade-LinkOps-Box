@@ -1,0 +1,90 @@
+{
+  "name": "query_delinquency",
+  "description": "Query delinquency.csv to find overdue tenants with filtering and sorting options",
+  "category": "financial_reporting",
+  "priority": "high",
+  "parameters": {
+    "days_late_min": {
+      "type": "integer",
+      "description": "Minimum days late to include",
+      "required": false,
+      "default": 1,
+      "example": 15
+    },
+    "days_late_max": {
+      "type": "integer", 
+      "description": "Maximum days late to include",
+      "required": false,
+      "example": 90
+    },
+    "amount_min": {
+      "type": "number",
+      "description": "Minimum amount owed",
+      "required": false,
+      "example": 500
+    },
+    "building": {
+      "type": "string",
+      "description": "Filter by specific building",
+      "required": false,
+      "example": "Building A"
+    },
+    "sort_by": {
+      "type": "string",
+      "description": "Field to sort results by",
+      "required": false,
+      "options": ["days_late", "amount_owed", "tenant_name", "unit_number"],
+      "default": "days_late",
+      "example": "amount_owed"
+    },
+    "sort_order": {
+      "type": "string",
+      "description": "Sort direction",
+      "required": false,
+      "options": ["asc", "desc"],
+      "default": "desc",
+      "example": "desc"
+    }
+  },
+  "execution": {
+    "command": "python",
+    "script": "delinquency_query.py",
+    "args": [
+      "--min_days", "{days_late_min}",
+      "--max_days", "{days_late_max}",
+      "--min_amount", "{amount_min}",
+      "--building", "{building}",
+      "--sort_by", "{sort_by}",
+      "--sort_order", "{sort_order}"
+    ]
+  },
+  "output": {
+    "total_delinquent_tenants": "integer",
+    "total_amount_owed": "number",
+    "tenants": [
+      {
+        "tenant_name": "string",
+        "unit_number": "string",
+        "days_late": "integer",
+        "amount_owed": "number",
+        "last_payment_date": "string",
+        "phone": "string",
+        "email": "string"
+      }
+    ],
+    "summary_stats": {
+      "avg_days_late": "number",
+      "avg_amount_owed": "number",
+      "worst_case": {
+        "tenant": "string",
+        "days_late": "integer",
+        "amount": "number"
+      }
+    }
+  },
+  "data_source": {
+    "file": "delinquency.csv",
+    "last_updated": "auto_detected",
+    "fields": ["tenant_name", "unit_number", "days_late", "amount_owed", "last_payment", "contact_info"]
+  }
+}

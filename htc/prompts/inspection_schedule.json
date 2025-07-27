@@ -1,0 +1,11 @@
+{
+  "category": "inspections",
+  "question": "Schedule quarterly inspection for units 201-210",
+  "expected_tool": "schedule_inspection.json",
+  "expected_command": "schedule_inspection --units '201-210' --type quarterly --inspector 'Mike Johnson' --date_range '2025-02-01,2025-02-15' --notify_tenants true",
+  "context_tag": "property_inspection",
+  "priority": "low",
+  "workflow": "inspection_cycle",
+  "legal_notice": "24_hour_minimum",
+  "checklist": "quarterly_inspection_items"
+}

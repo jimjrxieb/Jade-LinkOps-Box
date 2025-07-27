@@ -1,0 +1,40 @@
+{
+  "category": "advanced_workflows",
+  "scenarios": [
+    {
+      "question": "Tenant Diana Prince complained about noise from unit 501 above her",
+      "expected_tool": "notify_maintenance.json",
+      "expected_command": "notify_maintenance --unit_number '501' --issue_type general --description 'Noise complaint from unit below - investigate soundproofing' --urgency routine",
+      "context_tag": "tenant_complaint",
+      "follow_up_action": "schedule_tenant_meeting"
+    },
+    {
+      "question": "Schedule quarterly inspections for Building C units 301-310",
+      "expected_tool": "schedule_inspection.json", 
+      "expected_command": "schedule_inspection --units '301-310' --type quarterly --building 'Building C' --inspector 'Sarah Johnson' --notify_tenants true",
+      "context_tag": "compliance_inspection",
+      "legal_notice": "24_hour_advance_required"
+    },
+    {
+      "question": "Generate rent roll report for January with delinquency details",
+      "expected_tool": "generate_report.json",
+      "expected_command": "generate_report --type rent_roll --period 'January 2025' --include_delinquencies true --format pdf",
+      "context_tag": "financial_reporting",
+      "distribution": "property_owners"
+    },
+    {
+      "question": "Start eviction process for Clark Kent - 45 days late, $4500 owed",
+      "expected_tool": "legal_action.json",
+      "expected_command": "legal_action --tenant_name 'Clark Kent' --action_type eviction --amount_owed 4500 --days_late 45 --legal_counsel_required true",
+      "context_tag": "legal_escalation",
+      "approval_required": "regional_manager"
+    },
+    {
+      "question": "New tenant Barry Allen needs move-in packet and key pickup",
+      "expected_tool": "new_tenant_setup.json",
+      "expected_command": "new_tenant_setup --tenant_name 'Barry Allen' --unit_number '404' --move_in_date '2025-02-01' --lease_start '2025-02-01' --deposit_received true",
+      "context_tag": "tenant_onboarding",
+      "welcome_package": true
+    }
+  ]
+}

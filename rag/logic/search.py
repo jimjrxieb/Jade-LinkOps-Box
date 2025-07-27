@@ -492,6 +492,16 @@ class RAGSearchEngine:
             "last_updated": self._get_last_updated(),
         }
 
+    def _get_last_updated(self) -> str:
+        """Get the last updated timestamp of the vectorstore."""
+        try:
+            if self.vectorstore_path.exists():
+                timestamp = datetime.fromtimestamp(self.vectorstore_path.stat().st_mtime)
+                return timestamp.isoformat()
+            return datetime.now().isoformat()
+        except Exception:
+            return datetime.now().isoformat()
+
     def get_document_count(self) -> int:
         """Get number of documents in the index."""
         return len(self.documents)

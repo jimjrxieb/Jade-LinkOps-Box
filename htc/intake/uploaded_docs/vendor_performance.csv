@@ -1,0 +1,11 @@
+vendor_name,service_type,avg_cost,response_time_hours,quality_rating,jobs_completed,success_rate
+ABC Plumbing,plumbing,150,2.5,4.2,45,0.91
+QuickFix HVAC,hvac,275,4.0,3.8,32,0.88
+Metro Electric,electrical,200,1.5,4.5,28,0.96
+Elite Maintenance,general,120,3.0,4.0,67,0.89
+FastTrack Plumbing,plumbing,180,1.0,4.3,38,0.95
+CoolAir HVAC,hvac,320,2.0,4.7,41,0.93
+Spark Electric,electrical,175,2.5,4.1,52,0.90
+HandyPro Services,general,100,5.0,3.5,89,0.82
+Premier Plumbing,plumbing,165,3.5,3.9,29,0.86
+ClimateControl HVAC,hvac,290,1.5,4.4,35,0.91
