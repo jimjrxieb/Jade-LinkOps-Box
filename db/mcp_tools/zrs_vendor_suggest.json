@@ -1,0 +1,46 @@
+{
+  "name": "vendor_suggest",
+  "description": "Suggest the best ZRS-approved vendor for a maintenance issue based on work type, cost history, and recent performance ratings.",
+  "category": "vendor",
+  "parameters": {
+    "work_type": {
+      "type": "string",
+      "description": "Type of work needed",
+      "required": true,
+      "enum": ["HVAC", "plumbing", "electrical", "flooring", "painting", "roofing", "general"],
+      "example": "HVAC"
+    },
+    "urgency": {
+      "type": "string",
+      "description": "How quickly work is needed",
+      "required": false,
+      "enum": ["routine", "urgent", "emergency"],
+      "default": "routine",
+      "example": "urgent"
+    },
+    "budget_max": {
+      "type": "number",
+      "description": "Maximum budget for the work",
+      "required": false,
+      "example": 2500
+    }
+  },
+  "command": "python tools/vendor_ranker.py --type '{{work_type}}' --urgency '{{urgency}}' --budget '{{budget_max}}'",
+  "execution": {
+    "timeout": 45,
+    "retry_count": 2,
+    "log_level": "INFO"
+  },
+  "output": {
+    "recommended_vendors": "array",
+    "vendor_scores": "object",
+    "estimated_costs": "array",
+    "availability": "object"
+  },
+  "ranking_criteria": {
+    "cost_efficiency": 0.3,
+    "quality_rating": 0.4,
+    "response_time": 0.2,
+    "past_performance": 0.1
+  }
+}

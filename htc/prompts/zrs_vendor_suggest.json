@@ -1,0 +1,36 @@
+{
+  "category": "vendor",
+  "question": "Which HVAC vendor should I use?",
+  "expected_tool": "vendor_suggest",
+  "expected_command": "python tools/vendor_ranker.py --type 'HVAC'",
+  "context_tag": "vendor_recommendation",
+  "priority": "medium",
+  "variations": [
+    {
+      "question": "Recommend an HVAC contractor",
+      "context": "vendor_selection"
+    },
+    {
+      "question": "Best HVAC vendor for urgent repair?",
+      "expected_command": "python tools/vendor_ranker.py --type 'HVAC' --urgency 'urgent'",
+      "context": "emergency_vendor"
+    },
+    {
+      "question": "Need plumbing vendor recommendation",
+      "expected_command": "python tools/vendor_ranker.py --type 'plumbing'",
+      "context": "plumbing_vendor"
+    },
+    {
+      "question": "Electrical contractor needed - who's best?",
+      "expected_command": "python tools/vendor_ranker.py --type 'electrical'",
+      "context": "electrical_vendor"
+    },
+    {
+      "question": "Cheap painting contractor under $2000?",
+      "expected_command": "python tools/vendor_ranker.py --type 'painting' --budget '2000'",
+      "context": "budget_conscious"
+    }
+  ],
+  "vendor_categories": ["HVAC", "plumbing", "electrical", "flooring", "painting", "roofing", "general"],
+  "selection_criteria": "Cost, quality rating, response time, availability"
+}

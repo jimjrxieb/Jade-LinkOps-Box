@@ -1,0 +1,54 @@
+{
+  "name": "schedule_turnover",
+  "description": "Schedule a complete cleaning and inspection workflow for a vacated unit to prepare for new tenant occupancy.",
+  "category": "unit_turnover",
+  "parameters": {
+    "unit_number": {
+      "type": "string",
+      "description": "Unit to be turned over",
+      "required": true,
+      "example": "509"
+    },
+    "move_out_date": {
+      "type": "string",
+      "description": "Tenant's move-out date (YYYY-MM-DD)",
+      "required": true,
+      "format": "date",
+      "example": "2025-08-01"
+    },
+    "new_lease_date": {
+      "type": "string",
+      "description": "New tenant move-in date (YYYY-MM-DD)",
+      "required": false,
+      "format": "date",
+      "example": "2025-08-15"
+    },
+    "deep_clean": {
+      "type": "boolean",
+      "description": "Whether deep cleaning is required",
+      "required": false,
+      "default": false,
+      "example": true
+    }
+  },
+  "command": "python tools/schedule_turnover.py --unit '{{unit_number}}' --moveout '{{move_out_date}}' --movein '{{new_lease_date}}' --deep_clean {{deep_clean}}",
+  "execution": {
+    "timeout": 60,
+    "retry_count": 2,
+    "log_level": "INFO"
+  },
+  "output": {
+    "turnover_scheduled": "boolean",
+    "cleaning_date": "string",
+    "inspection_date": "string",
+    "estimated_ready_date": "string",
+    "total_cost_estimate": "number"
+  },
+  "workflow": {
+    "day_1": "Initial inspection and damage assessment",
+    "day_2": "Professional cleaning (standard or deep)",
+    "day_3": "Minor repairs and touch-ups",
+    "day_4": "Final inspection and photos",
+    "day_5": "Unit ready for showing/lease"
+  }
+}

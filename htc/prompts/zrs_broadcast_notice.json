@@ -1,0 +1,35 @@
+{
+  "category": "communication",
+  "question": "Email everyone that the pool is closed",
+  "expected_tool": "broadcast_notice",
+  "expected_command": "python tools/email_broadcast.py --subject 'Pool Closure' --body 'The pool is closed until further notice for maintenance'",
+  "context_tag": "tenant_communication",
+  "priority": "low",
+  "variations": [
+    {
+      "question": "Send notice to all tenants about pool closure",
+      "context": "facility_announcement"
+    },
+    {
+      "question": "Broadcast pool closure message to residents",
+      "context": "mass_communication"
+    },
+    {
+      "question": "Emergency notice: elevator out of service",
+      "expected_command": "python tools/email_broadcast.py --subject 'URGENT: Elevator Out of Service' --body 'The elevator is temporarily out of service. Please use stairs. Estimated repair time: 24 hours.' --priority 'urgent'",
+      "context": "emergency_notification"
+    },
+    {
+      "question": "Remind Building A tenants about rent due date",
+      "expected_command": "python tools/email_broadcast.py --subject 'Rent Due Reminder' --body 'Friendly reminder that rent is due on the 1st of each month' --recipients 'building_a'",
+      "context": "targeted_reminder"
+    },
+    {
+      "question": "Send holiday hours notice to all residents",
+      "expected_command": "python tools/email_broadcast.py --subject 'Holiday Office Hours' --body 'The office will be closed December 25th and January 1st for holidays'",
+      "context": "holiday_announcement"
+    }
+  ],
+  "message_types": ["Maintenance notices", "Policy updates", "Emergency alerts", "Holiday schedules", "Event announcements"],
+  "delivery_tracking": "Email open rates, bounce rates, unsubscribe tracking"
+}

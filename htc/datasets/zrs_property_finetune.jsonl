@@ -1,0 +1,46 @@
+{"instruction": "Send a rent notice to Bruce Banner for unit 1201, $2200, 9 days late", "output": "send_late_notice --tenant 'Bruce Banner' --unit '1201' --amount_due 2200 --days_late 9"}
+{"instruction": "Who hasn't paid rent in over 15 days?", "output": "query_delinquency --days_late 15"}
+{"instruction": "Notify maintenance about an AC issue in unit 101", "output": "notify_maintenance --unit_number '101' --issue 'AC not working' --priority 'high'"}
+{"instruction": "Schedule turnover for unit 802 after move-out on 2025-08-15", "output": "schedule_turnover --unit_number '802' --move_out_date '2025-08-15'"}
+{"instruction": "Recommend a plumbing vendor", "output": "vendor_suggest --work_type 'plumbing'"}
+{"instruction": "Email everyone that the pool is closed", "output": "broadcast_notice --subject 'Pool Closure' --body 'The pool is closed until further notice for maintenance'"}
+{"instruction": "John Wick in 203 owes $1800 for 12 days - send notice", "output": "send_late_notice --tenant 'John Wick' --unit '203' --amount_due 1800 --days_late 12"}
+{"instruction": "Unit 404 has a leaking faucet - alert maintenance team", "output": "notify_maintenance --unit_number '404' --issue 'leaking faucet' --priority 'medium'"}
+{"instruction": "Best HVAC vendor for urgent repair?", "output": "vendor_suggest --work_type 'HVAC' --urgency 'urgent'"}
+{"instruction": "Unit 509 turnover needed for August 1st move-out", "output": "schedule_turnover --unit_number '509' --move_out_date '2025-08-01'"}
+{"instruction": "Show me tenants more than 15 days late", "output": "query_delinquency --days_late 15"}
+{"instruction": "Send notice to all tenants about pool closure", "output": "broadcast_notice --subject 'Pool Closure Notice' --body 'The pool will be closed for maintenance'"}
+{"instruction": "Emergency: water everywhere in unit 404 from broken faucet", "output": "notify_maintenance --unit_number '404' --issue 'broken faucet flooding' --priority 'emergency'"}
+{"instruction": "Need electrical contractor - who's best?", "output": "vendor_suggest --work_type 'electrical'"}
+{"instruction": "Schedule deep cleaning for 509 - tenant moved out 8/1", "output": "schedule_turnover --unit_number '509' --move_out_date '2025-08-01' --deep_clean true"}
+{"instruction": "Building A tenants who are late on rent?", "output": "query_delinquency --days_late 1 --building 'Building A'"}
+{"instruction": "Emergency notice: elevator out of service", "output": "broadcast_notice --subject 'URGENT: Elevator Out of Service' --body 'The elevator is temporarily out of service. Please use stairs.' --priority 'urgent'"}
+{"instruction": "Tony Stark hasn't paid $2500 rent for unit 401 - 8 days late", "output": "send_late_notice --tenant 'Tony Stark' --unit '401' --amount_due 2500 --days_late 8"}
+{"instruction": "Broken dishwasher in unit 205 needs repair", "output": "notify_maintenance --unit_number '205' --issue 'broken dishwasher' --priority 'medium'"}
+{"instruction": "Cheap painting contractor under $2000?", "output": "vendor_suggest --work_type 'painting' --budget_max 2000"}
+{"instruction": "Prepare unit 509 for new tenant moving in August 15th", "output": "schedule_turnover --unit_number '509' --move_out_date '2025-08-01' --new_lease_date '2025-08-15'"}
+{"instruction": "Who owes more than $1000 in back rent?", "output": "query_delinquency --days_late 1 --amount_threshold 1000"}
+{"instruction": "Remind Building A tenants about rent due date", "output": "broadcast_notice --subject 'Rent Due Reminder' --body 'Friendly reminder that rent is due on the 1st' --recipient_group 'building_a'"}
+{"instruction": "Peter Parker unit 205 late notice - $1200 owed, 7 days overdue", "output": "send_late_notice --tenant 'Peter Parker' --unit '205' --amount_due 1200 --days_late 7"}
+{"instruction": "HVAC system down in Building B - emergency repair", "output": "notify_maintenance --unit_number 'Building B' --issue 'HVAC system failure' --priority 'emergency'"}
+{"instruction": "Find reliable roofing contractor", "output": "vendor_suggest --work_type 'roofing'"}
+{"instruction": "Fast turnover needed for 509 - new lease starts soon", "output": "schedule_turnover --unit_number '509' --move_out_date '2025-08-01' --new_lease_date '2025-08-05'"}
+{"instruction": "Worst delinquency cases by amount owed", "output": "query_delinquency --days_late 1 --sort_by 'amount_owed'"}
+{"instruction": "Send holiday hours notice to all residents", "output": "broadcast_notice --subject 'Holiday Office Hours' --body 'Office closed December 25th and January 1st'"}
+{"instruction": "Diana Prince 302 AC not working - high priority", "output": "notify_maintenance --unit_number '302' --issue 'AC not working' --priority 'high' --tenant_contact 'Diana Prince'"}
+{"instruction": "Which vendor for flooring replacement project?", "output": "vendor_suggest --work_type 'flooring'"}
+{"instruction": "Unit 101 needs deep clean after damage", "output": "schedule_turnover --unit_number '101' --move_out_date '2025-07-30' --deep_clean true"}
+{"instruction": "Tenants over 30 days late - legal action needed", "output": "query_delinquency --days_late 30 --sort_by 'days_late'"}
+{"instruction": "Water shut-off notice for emergency repairs tomorrow", "output": "broadcast_notice --subject 'URGENT: Water Shut-off' --body 'Water will be shut off tomorrow 8AM-12PM for repairs' --priority 'urgent'"}
+{"instruction": "Clark Kent 505 owes $1800 - 14 days late, send final notice", "output": "send_late_notice --tenant 'Clark Kent' --unit '505' --amount_due 1800 --days_late 14"}
+{"instruction": "Garbage disposal jammed in unit 304", "output": "notify_maintenance --unit_number '304' --issue 'garbage disposal jammed' --priority 'low'"}
+{"instruction": "Need general contractor for multiple repairs", "output": "vendor_suggest --work_type 'general'"}
+{"instruction": "Schedule inspection for unit 607 before new tenant", "output": "schedule_turnover --unit_number '607' --move_out_date '2025-08-10' --new_lease_date '2025-08-20'"}
+{"instruction": "Show Building B delinquencies only", "output": "query_delinquency --days_late 1 --building 'Building B'"}
+{"instruction": "Parking lot closure for repaving next week", "output": "broadcast_notice --subject 'Parking Lot Closure' --body 'Parking lot closed Monday-Wednesday for repaving'"}
+{"instruction": "Natasha Romanoff 401 late $2100, 11 days - send notice", "output": "send_late_notice --tenant 'Natasha Romanoff' --unit '401' --amount_due 2100 --days_late 11"}
+{"instruction": "Heating not working in unit 103 - winter emergency", "output": "notify_maintenance --unit_number '103' --issue 'heating not working' --priority 'emergency'"}
+{"instruction": "Best HVAC vendor under $3000 budget?", "output": "vendor_suggest --work_type 'HVAC' --budget_max 3000"}
+{"instruction": "Quick cleaning for 204 - showing tomorrow", "output": "schedule_turnover --unit_number '204' --move_out_date '2025-07-28' --new_lease_date '2025-07-30'"}
+{"instruction": "All tenants over 45 days late - eviction review", "output": "query_delinquency --days_late 45 --sort_by 'days_late'"}
+{"instruction": "Gym equipment maintenance notice", "output": "broadcast_notice --subject 'Gym Maintenance' --body 'Gym equipment will be serviced Friday 6AM-10AM'"}

@@ -1,0 +1,48 @@
+{
+  "name": "send_late_notice",
+  "description": "Send a late rent notice to a specific tenant via email with ZRS branding and legal compliance.",
+  "category": "billing",
+  "parameters": {
+    "tenant_name": {
+      "type": "string",
+      "description": "Full name of the tenant",
+      "required": true,
+      "example": "John Wick"
+    },
+    "unit_number": {
+      "type": "string", 
+      "description": "Unit number (e.g., 204)",
+      "required": true,
+      "example": "204"
+    },
+    "amount_due": {
+      "type": "number",
+      "description": "Total amount overdue",
+      "required": true,
+      "example": 1800
+    },
+    "days_late": {
+      "type": "integer",
+      "description": "How many days past due",
+      "required": true,
+      "example": 12
+    }
+  },
+  "command": "python tools/email_sender.py --template late_notice --tenant '{{tenant_name}}' --unit '{{unit_number}}' --amount '{{amount_due}}' --days '{{days_late}}'",
+  "execution": {
+    "timeout": 30,
+    "retry_count": 3,
+    "log_level": "INFO"
+  },
+  "output": {
+    "email_sent": "boolean",
+    "timestamp": "ISO datetime",
+    "recipient_email": "string", 
+    "message_id": "string"
+  },
+  "compliance": {
+    "legal_notice": "Complies with state tenant law requirements",
+    "grace_period": "3 day notice period included",
+    "contact_info": "ZRS management contact included"
+  }
+}

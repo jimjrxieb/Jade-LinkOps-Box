@@ -1,0 +1,24 @@
+{
+  "category": "billing",
+  "question": "Send a late rent notice to John Wick in unit 203 for $1800 overdue by 12 days",
+  "expected_tool": "send_late_notice",
+  "expected_command": "python tools/email_sender.py --template late_notice --tenant 'John Wick' --unit '203' --amount '1800' --days '12'",
+  "context_tag": "tenant_billing",
+  "priority": "high",
+  "variations": [
+    {
+      "question": "John Wick in 203 owes $1800 for 12 days - send notice",
+      "context": "urgent_collection"
+    },
+    {
+      "question": "Unit 203 tenant John Wick is 12 days late on $1800 rent",
+      "context": "delinquency_management"
+    },
+    {
+      "question": "Email late notice to John Wick (203) - $1800, 12 days overdue",
+      "context": "billing_automation"
+    }
+  ],
+  "compliance_notes": "Must include 3-day pay or quit notice as required by state law",
+  "escalation_path": "Phone call after 15 days, legal notice after 21 days"
+}

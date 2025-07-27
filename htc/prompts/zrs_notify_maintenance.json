@@ -1,0 +1,33 @@
+{
+  "category": "maintenance",
+  "question": "Notify maintenance about a leaking faucet in unit 404",
+  "expected_tool": "notify_maintenance",
+  "expected_command": "python tools/email_sender.py --template maintenance_request --unit '404' --issue 'leaking faucet' --priority 'medium'",
+  "context_tag": "repair_request",
+  "priority": "medium",
+  "variations": [
+    {
+      "question": "Unit 404 has a leaking faucet - alert maintenance team",
+      "context": "plumbing_issue"
+    },
+    {
+      "question": "Report faucet leak in 404 to maintenance",
+      "context": "tenant_complaint"
+    },
+    {
+      "question": "Maintenance needed: leaking faucet in unit 404",
+      "context": "work_order_creation"
+    },
+    {
+      "question": "Emergency: water everywhere in unit 404 from broken faucet",
+      "expected_command": "python tools/email_sender.py --template maintenance_request --unit '404' --issue 'broken faucet flooding' --priority 'emergency'",
+      "context": "emergency_response"
+    }
+  ],
+  "response_times": {
+    "emergency": "2 hours",
+    "high": "Same day",
+    "medium": "24 hours", 
+    "low": "72 hours"
+  }
+}
