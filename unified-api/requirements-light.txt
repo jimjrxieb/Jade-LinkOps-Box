@@ -12,6 +12,6 @@ sentence-transformers>=2.7.0
 transformers>=4.52.0
 torch>=2.6.0
 pillow>=10.2.0
-setuptools>=70.0.0
+setuptools>=78.1.1
 zipp>=3.19.1
 python-magic==0.4.27
