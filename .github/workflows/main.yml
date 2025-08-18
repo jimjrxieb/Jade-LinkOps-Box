@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Python Lint + Format Check
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - uses: actions/setup-python@v4
         with:
@@ -57,7 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Frontend Lint + Format Check
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - uses: actions/setup-node@v4
         with:
@@ -95,7 +95,7 @@ jobs:
     runs-on: ubuntu-latest
     name: YAML Lint + Format Check
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - uses: actions/setup-node@v4
         with:
@@ -131,7 +131,7 @@ jobs:
     needs: [lint-yaml]
     if: always()
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Validate Docker Compose Files
         run: |
@@ -168,7 +168,7 @@ jobs:
     if: always()
     steps:
       - name: "📥 Checkout code"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: "🐳 Scan Dockerfiles, IaC, and Code"
         uses: aquasecurity/trivy-action@master
@@ -197,7 +197,7 @@ jobs:
     if: always() && github.event_name == 'push'
     steps:
       - name: "📥 Checkout code"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0  # Full history for better secret detection
 
@@ -283,7 +283,7 @@ jobs:
       ]
     if: always() && github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - uses: docker/setup-buildx-action@v3
 
@@ -582,7 +582,7 @@ jobs:
     name: "End-to-End Tests"
     needs: [docker-build-push]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -653,7 +653,7 @@ jobs:
     name: "Security & Session Tests"
     needs: [e2e-tests]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -690,7 +690,7 @@ jobs:
     needs: [security-tests]
     if: github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Validate Monitoring Config
         run: |
