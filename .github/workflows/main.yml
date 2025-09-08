@@ -214,7 +214,7 @@ jobs:
 
       - name: "🛡 Scan with GitGuardian"
         if: steps.check-gitguardian.outputs.gitguardian-available == 'true'
-        uses: GitGuardian/ggshield-action@v1.20.0
+        uses: GitGuardian/ggshield-action@v1.43.0
         env:
           GITGUARDIAN_API_KEY: ${{ secrets.GITGUARDIAN_API_KEY }}
         with:
