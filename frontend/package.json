@@ -39,7 +39,7 @@
     "eslint-plugin-vue": "10.3.0",
     "postcss": "8.4.31",
     "prettier": "3.0.0",
-    "tailwindcss": "3.4.1",
+    "tailwindcss": "4.1.14",
     "vite": "5.2.10",
     "vitest": "3.2.4",
     "vue-tsc": "3.0.1"
