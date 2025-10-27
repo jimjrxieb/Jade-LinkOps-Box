@@ -679,7 +679,7 @@ jobs:
           pytest tests/test_auth.py --cov=routers.auth --cov-report=xml
 
       - name: Upload Coverage
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: coverage-report
           path: unified-api/coverage.xml
