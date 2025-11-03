@@ -344,7 +344,7 @@ jobs:
       # Build and conditionally push each demo service
       - name: Build + Push Frontend
         if: steps.check-secrets.outputs.secrets-available == 'true'
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
           context: ./frontend
           push: true
@@ -356,7 +356,7 @@ jobs:
 
       - name: Build Frontend (No Push)
         if: steps.check-secrets.outputs.secrets-available == 'false'
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
           context: ./frontend
           push: false
@@ -364,7 +364,7 @@ jobs:
 
       - name: Build + Push Unified API
         if: steps.check-secrets.outputs.secrets-available == 'true'
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
           context: ./unified-api
           push: true
@@ -376,7 +376,7 @@ jobs:
 
       - name: Build Unified API (No Push)
         if: steps.check-secrets.outputs.secrets-available == 'false'
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
           context: ./unified-api
           push: false
@@ -384,7 +384,7 @@ jobs:
 
       - name: Build + Push ML Models
         if: steps.check-secrets.outputs.secrets-available == 'true'
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
           context: ./ml-models
           push: true
@@ -396,7 +396,7 @@ jobs:
 
       - name: Build ML Models (No Push)
         if: steps.check-secrets.outputs.secrets-available == 'false'
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
           context: ./ml-models
           push: false
@@ -404,7 +404,7 @@ jobs:
 
       - name: Build + Push Pipeline
         if: steps.check-secrets.outputs.secrets-available == 'true'
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
           context: ./pipeline
           push: true
@@ -416,7 +416,7 @@ jobs:
 
       - name: Build Pipeline (No Push)
         if: steps.check-secrets.outputs.secrets-available == 'false'
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
           context: ./pipeline
           push: false
@@ -424,7 +424,7 @@ jobs:
 
       - name: Build + Push RAG Service
         if: steps.check-secrets.outputs.secrets-available == 'true'
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
           context: ./rag
           push: true
@@ -436,7 +436,7 @@ jobs:
 
       - name: Build RAG Service (No Push)
         if: steps.check-secrets.outputs.secrets-available == 'false'
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
           context: ./rag
           push: false
@@ -444,7 +444,7 @@ jobs:
 
       - name: Build + Push Sync Engine
         if: steps.check-secrets.outputs.secrets-available == 'true'
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
           context: ./sync_engine
           push: true
@@ -456,7 +456,7 @@ jobs:
 
       - name: Build Sync Engine (No Push)
         if: steps.check-secrets.outputs.secrets-available == 'false'
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
           context: ./sync_engine
           push: false
